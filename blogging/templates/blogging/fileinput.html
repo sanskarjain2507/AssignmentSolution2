@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}File input{% endblock %}
+
+{% block nav_title %}Blogs{% endblock %}
+
+{% block nav_items %}
+
+<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+          <form method="get" action="/blogging" >
+            <button style="background-color:transparent; border:0;" class="nav-link ">Homepage</button>
+          </form>
+        </li>
+
+
+
+        <li class="nav-item">
+            <form method="get" action="/blogging/show_updates">
+                <button style="background-color:transparent; border:0;" class="nav-link">Updates</button>
+            </form>
+        </li>
+
+        <li class="nav-item">
+          <form action="/blogging/onFilePress" method="get">
+              <a class="nav-link"><button type="submit" class="btn btn-danger">Create Filefield</button></a>
+          </form>
+        </li>
+
+    </ul>
+</div>
+{% endblock %}
+{% block body %}
+<center>
+    <form method="post" action="/blogging/after_fileInput" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            <tr class="table-primary">
+                <td>Please select the file path</td>
+                <td><input type="file" required accept=".txt" name="filed"></td>
+            </tr>
+        </table>
+
+        <br><br>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</center>
+
+
+{% endblock %}
